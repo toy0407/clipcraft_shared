@@ -1,6 +1,6 @@
 {
-  "name": "clipcraft_shared",
-  "version": "0.1.0",
+  "name": "@toy0407/clipcraft-shared",
+  "version": "0.1.1",
   "description": "Shared files for all microservices",
   "main": "dist/index.js",
   "publishConfig": {
@@ -38,6 +38,7 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
     "pino": "^10.1.0",
+    "pino-pretty": "^13.1.2",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
