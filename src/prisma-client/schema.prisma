@@ -1,0 +1,282 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../src/prisma-client"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String @id @default(cuid())
+  email String @unique
+
+  // Profile
+  name      String?
+  avatarUrl String?
+
+  // Subscription
+  subscriptionStatus SubscriptionStatus @default(FREE)
+
+  // Soft delete
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  otpCodes     OTPCode[]
+  sessions     Session[]
+  subscription Subscription?
+  videos       Video[]
+  analytics    AnalyticsEvent[]
+
+  @@index([email])
+  @@index([subscriptionStatus])
+  @@map("users")
+}
+
+model OTPCode {
+  id      String     @id @default(uuid())
+  userId  String
+  user    User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  email   String // Store email even if user doesn't exist 
+  code    String // Hashed OTP code
+  purpose OtpPurpose
+
+  // Expiration & attempts
+  expiresAt DateTime
+  attempts  Int      @default(0)
+
+  // Status
+  isUsed Boolean   @default(false)
+  usedAt DateTime?
+
+  // Invalidation
+  isValid           Boolean   @default(true)
+  invalidatedAt     DateTime?
+  invalidatedReason String?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, isUsed])
+  @@index([email, expiresAt])
+  @@index([code, expiresAt])
+  @@map("otp_codes")
+}
+
+model Session {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Tokens
+  accessToken  String @unique
+  refreshToken String @unique
+
+  // Token metadata
+  accessTokenExpiresAt  DateTime
+  refreshTokenExpiresAt DateTime
+
+  // Device info
+  deviceId       String
+  appVersion     String?
+  ipAddress      String?
+  lastActivityAt DateTime @default(now())
+
+  // Session status
+  isActive      Boolean   @default(true)
+  isRevoked     Boolean   @default(false)
+  revokedAt     DateTime?
+  revokedReason String?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  @@index([userId, isActive])
+  @@index([accessToken])
+  @@index([refreshToken])
+  @@index([accessTokenExpiresAt])
+  @@map("sessions")
+}
+
+model Subscription {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Subscription details
+  status     SubscriptionStatus
+  plan       SubscriptionPlan
+  provider   PaymentProvider // stripe, google_play, app_store
+  providerId String?            @unique // External subscription ID
+
+  // Billing
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  cancelAtPeriodEnd  Boolean   @default(false)
+  canceledAt         DateTime?
+  trialStart         DateTime?
+  trialEnd           DateTime?
+
+  // Features
+  features Json // Store enabled features as JSON
+  limits   Json // e.g., number of tokens available
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  history SubscriptionHistory[]
+
+  @@index([userId, status])
+  @@index([currentPeriodEnd])
+  @@index([providerId])
+  @@map("subscriptions")
+}
+
+model SubscriptionHistory {
+  id             String       @id @default(uuid())
+  subscriptionId String
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  // Event details
+  eventType  SubscriptionEventType
+  fromStatus SubscriptionStatus?
+  toStatus   SubscriptionStatus
+  fromPlan   SubscriptionPlan?
+  toPlan     SubscriptionPlan
+
+  // Payment details
+  amount   Decimal? @db.Decimal(10, 2)
+  currency String?
+
+  // Metadata
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@index([subscriptionId])
+  @@index([createdAt])
+  @@map("subscription_history")
+}
+
+model Video {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Creation details
+  prompt        String     @db.Text
+  customScript  String?    @db.Text
+  duration      Int // in seconds
+  style         VideoStyle
+  language      String
+  audioLanguage String
+  hasCaptions   Boolean    @default(false)
+
+  // Processing status
+  status       VideoStatus @default(QUEUED)
+  errorMessage String?
+
+  // Asset URLs
+  videoUrl     String?
+  thumbnailUrl String?
+  captionUrl   String?
+
+  // Tokens used
+  tokensUsed Int @default(0)
+
+  // Metadata
+  metadata Json?
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AnalyticsEvent {
+  id     String  @id @default(uuid())
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  eventName     String
+  eventCategory String
+  properties    Json?
+
+  // Session info
+  sessionId  String?
+  deviceId   String?
+  platform   String?
+  appVersion String?
+
+  // Location
+  ipAddress String?
+
+  timestamp DateTime @default(now())
+
+  @@index([userId, timestamp])
+  @@index([eventName, timestamp])
+  @@index([timestamp])
+  @@map("analytics_events")
+}
+
+enum OtpPurpose {
+  LOGIN
+}
+
+enum SubscriptionStatus {
+  FREE
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+  EXPIRED
+}
+
+enum SubscriptionPlan {
+  FREE
+  PREMIUM_MONTHLY
+  PREMIUM_YEARLY
+}
+
+enum SubscriptionEventType {
+  CREATED
+  ACTIVATED
+  RENEWED
+  UPGRADED
+  DOWNGRADED
+  CANCELED
+  EXPIRED
+  TRIAL_STARTED
+  TRIAL_ENDED
+  PAYMENT_FAILED
+}
+
+enum PaymentProvider {
+  STRIPE
+  GOOGLE_PLAY
+  APP_STORE
+  MANUAL
+}
+
+enum VideoStyle {
+  REALISTIC
+  ANIMATED
+  CARTOON
+  ANIME
+  ABSTRACT
+}
+
+enum VideoStatus {
+  QUEUED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
