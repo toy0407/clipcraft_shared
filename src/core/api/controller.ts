@@ -131,7 +131,10 @@ export class ApiController {
    */
   public applyRoutes(router: any) {
     this.routes.forEach((config, key) => {
-      const [method, path] = key.split(":");
+      const sepIndex = key.indexOf(":");
+      if (sepIndex === -1) return;
+      const method = key.substring(0, sepIndex);
+      const path = key.substring(sepIndex + 1);
       const { handler, middlewares = [] } = config;
 
       switch (method.toLowerCase()) {

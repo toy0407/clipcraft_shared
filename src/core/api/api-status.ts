@@ -19,3 +19,11 @@ export enum ApiStatusMessages {
   VALIDATION_ERROR = "ValidationError",
   INTERNAL_SERVER_ERROR = "InternalServerError",
 }
+
+export enum HttpMethods {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+  PATCH = "PATCH",
+}
