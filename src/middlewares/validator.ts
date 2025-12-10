@@ -3,7 +3,7 @@ import Joi from "joi";
 import { ValidationError } from "../core/api/errors";
 import { ApiStatusCodes } from "../core/api/api-status";
 
-type ValidatorSchema<T = any> = {
+export type ValidatorSchema<T = any> = {
   body?: Joi.Schema<T>;
   query?: Joi.Schema<T>;
   params?: Joi.Schema<T>;

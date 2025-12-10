@@ -59,7 +59,7 @@ export const errorHandler = (
 
     return res.status(status).json({
       isSuccess: false,
-      error: "Validation Error",
+      error: err.message ?? "Validation Error",
     } as ApiResponse<null>);
   }
 

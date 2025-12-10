@@ -3,27 +3,31 @@ import { GenericResponse } from "../dto/generic/generic-response";
 import axios from "axios";
 import logger from "./logger.util";
 
+export interface InternalServiceApiClientOptions {
+  method: HttpMethods;
+  serviceBaseUrl: string;
+  slug?: string;
+  headers?: Record<string, string>;
+  queryParams?: Record<string, string>;
+  body?: any;
+  internalServiceKey?: string;
+}
+
 export const InternalServiceApiClient = async (
-  method: HttpMethods,
-  serviceBaseUrl: string,
-  slug?: string,
-  headers?: Record<string, string>,
-  queryParams?: Record<string, string>,
-  body?: any,
-  internalServiceKey?: string
+  options: InternalServiceApiClientOptions
 ): Promise<GenericResponse<any>> => {
-  let finalHeaders: Record<string, string> = headers ?? {};
-  if (internalServiceKey || process.env.INTERNAL_SERVICE_KEY) {
+  let finalHeaders: Record<string, string> = options.headers ?? {};
+  if (options.internalServiceKey || process.env.INTERNAL_SERVICE_KEY) {
     finalHeaders["x-service-key"] =
-      internalServiceKey ?? process.env.INTERNAL_SERVICE_KEY!;
+      options.internalServiceKey ?? process.env.INTERNAL_SERVICE_KEY!;
   }
   try {
     const response = await axios.request({
-      method: method ?? HttpMethods.GET,
-      baseURL: `${serviceBaseUrl}/internal/${slug ?? ""}`,
+      method: options.method ?? HttpMethods.GET,
+      baseURL: `${options.serviceBaseUrl}/internal/${options.slug ?? ""}`,
       headers: finalHeaders,
-      params: queryParams,
-      data: body,
+      params: options.queryParams,
+      data: options.body,
     });
     if (response.status < 200 || response.status >= 300) {
       logger.error(
@@ -33,8 +37,8 @@ export const InternalServiceApiClient = async (
         isSuccess: false,
         error:
           response.data?.error ??
-          `Failed to call internal service ${serviceBaseUrl}/internal/${
-            slug ?? ""
+          `Failed to call internal service ${options.serviceBaseUrl}/internal/${
+            options.slug ?? ""
           }: ${response.status} : ${response.statusText}`,
       };
     }

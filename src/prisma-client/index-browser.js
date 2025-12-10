@@ -133,7 +133,7 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.OTPCodeScalarFieldEnum = {
+exports.Prisma.OtpCodeScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   email: 'email',
@@ -275,7 +275,8 @@ exports.SubscriptionStatus = exports.$Enums.SubscriptionStatus = {
 };
 
 exports.OtpPurpose = exports.$Enums.OtpPurpose = {
-  LOGIN: 'LOGIN'
+  LOGIN: 'LOGIN',
+  SIGNUP: 'SIGNUP'
 };
 
 exports.SubscriptionPlan = exports.$Enums.SubscriptionPlan = {
@@ -321,7 +322,7 @@ exports.VideoStatus = exports.$Enums.VideoStatus = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  OTPCode: 'OTPCode',
+  OtpCode: 'OtpCode',
   Session: 'Session',
   Subscription: 'Subscription',
   SubscriptionHistory: 'SubscriptionHistory',
