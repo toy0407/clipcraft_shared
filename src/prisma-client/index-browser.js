@@ -210,7 +210,6 @@ exports.Prisma.VideoScalarFieldEnum = {
   duration: 'duration',
   style: 'style',
   language: 'language',
-  audioLanguage: 'audioLanguage',
   hasCaptions: 'hasCaptions',
   status: 'status',
   errorMessage: 'errorMessage',

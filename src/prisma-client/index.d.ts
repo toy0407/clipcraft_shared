@@ -7649,7 +7649,6 @@ export namespace Prisma {
     duration: number | null
     style: $Enums.VideoStyle | null
     language: string | null
-    audioLanguage: string | null
     hasCaptions: boolean | null
     status: $Enums.VideoStatus | null
     errorMessage: string | null
@@ -7670,7 +7669,6 @@ export namespace Prisma {
     duration: number | null
     style: $Enums.VideoStyle | null
     language: string | null
-    audioLanguage: string | null
     hasCaptions: boolean | null
     status: $Enums.VideoStatus | null
     errorMessage: string | null
@@ -7692,7 +7690,6 @@ export namespace Prisma {
     duration: number
     style: number
     language: number
-    audioLanguage: number
     hasCaptions: number
     status: number
     errorMessage: number
@@ -7726,7 +7723,6 @@ export namespace Prisma {
     duration?: true
     style?: true
     language?: true
-    audioLanguage?: true
     hasCaptions?: true
     status?: true
     errorMessage?: true
@@ -7747,7 +7743,6 @@ export namespace Prisma {
     duration?: true
     style?: true
     language?: true
-    audioLanguage?: true
     hasCaptions?: true
     status?: true
     errorMessage?: true
@@ -7769,7 +7764,6 @@ export namespace Prisma {
     duration?: true
     style?: true
     language?: true
-    audioLanguage?: true
     hasCaptions?: true
     status?: true
     errorMessage?: true
@@ -7879,7 +7873,6 @@ export namespace Prisma {
     duration: number
     style: $Enums.VideoStyle
     language: string
-    audioLanguage: string
     hasCaptions: boolean
     status: $Enums.VideoStatus
     errorMessage: string | null
@@ -7921,7 +7914,6 @@ export namespace Prisma {
     duration?: boolean
     style?: boolean
     language?: boolean
-    audioLanguage?: boolean
     hasCaptions?: boolean
     status?: boolean
     errorMessage?: boolean
@@ -7945,7 +7937,6 @@ export namespace Prisma {
     duration?: boolean
     style?: boolean
     language?: boolean
-    audioLanguage?: boolean
     hasCaptions?: boolean
     status?: boolean
     errorMessage?: boolean
@@ -7969,7 +7960,6 @@ export namespace Prisma {
     duration?: boolean
     style?: boolean
     language?: boolean
-    audioLanguage?: boolean
     hasCaptions?: boolean
     status?: boolean
     errorMessage?: boolean
@@ -7993,7 +7983,6 @@ export namespace Prisma {
     duration?: boolean
     style?: boolean
     language?: boolean
-    audioLanguage?: boolean
     hasCaptions?: boolean
     status?: boolean
     errorMessage?: boolean
@@ -8007,7 +7996,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type VideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "prompt" | "customScript" | "duration" | "style" | "language" | "audioLanguage" | "hasCaptions" | "status" | "errorMessage" | "videoUrl" | "thumbnailUrl" | "captionUrl" | "tokensUsed" | "version" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["video"]>
+  export type VideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "prompt" | "customScript" | "duration" | "style" | "language" | "hasCaptions" | "status" | "errorMessage" | "videoUrl" | "thumbnailUrl" | "captionUrl" | "tokensUsed" | "version" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["video"]>
   export type VideoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -8032,7 +8021,6 @@ export namespace Prisma {
       duration: number
       style: $Enums.VideoStyle
       language: string
-      audioLanguage: string
       hasCaptions: boolean
       status: $Enums.VideoStatus
       errorMessage: string | null
@@ -8476,7 +8464,6 @@ export namespace Prisma {
     readonly duration: FieldRef<"Video", 'Int'>
     readonly style: FieldRef<"Video", 'VideoStyle'>
     readonly language: FieldRef<"Video", 'String'>
-    readonly audioLanguage: FieldRef<"Video", 'String'>
     readonly hasCaptions: FieldRef<"Video", 'Boolean'>
     readonly status: FieldRef<"Video", 'VideoStatus'>
     readonly errorMessage: FieldRef<"Video", 'String'>
@@ -10171,7 +10158,6 @@ export namespace Prisma {
     duration: 'duration',
     style: 'style',
     language: 'language',
-    audioLanguage: 'audioLanguage',
     hasCaptions: 'hasCaptions',
     status: 'status',
     errorMessage: 'errorMessage',
@@ -10956,7 +10942,6 @@ export namespace Prisma {
     duration?: IntFilter<"Video"> | number
     style?: EnumVideoStyleFilter<"Video"> | $Enums.VideoStyle
     language?: StringFilter<"Video"> | string
-    audioLanguage?: StringFilter<"Video"> | string
     hasCaptions?: BoolFilter<"Video"> | boolean
     status?: EnumVideoStatusFilter<"Video"> | $Enums.VideoStatus
     errorMessage?: StringNullableFilter<"Video"> | string | null
@@ -10980,7 +10965,6 @@ export namespace Prisma {
     duration?: SortOrder
     style?: SortOrder
     language?: SortOrder
-    audioLanguage?: SortOrder
     hasCaptions?: SortOrder
     status?: SortOrder
     errorMessage?: SortOrderInput | SortOrder
@@ -11007,7 +10991,6 @@ export namespace Prisma {
     duration?: IntFilter<"Video"> | number
     style?: EnumVideoStyleFilter<"Video"> | $Enums.VideoStyle
     language?: StringFilter<"Video"> | string
-    audioLanguage?: StringFilter<"Video"> | string
     hasCaptions?: BoolFilter<"Video"> | boolean
     status?: EnumVideoStatusFilter<"Video"> | $Enums.VideoStatus
     errorMessage?: StringNullableFilter<"Video"> | string | null
@@ -11031,7 +11014,6 @@ export namespace Prisma {
     duration?: SortOrder
     style?: SortOrder
     language?: SortOrder
-    audioLanguage?: SortOrder
     hasCaptions?: SortOrder
     status?: SortOrder
     errorMessage?: SortOrderInput | SortOrder
@@ -11062,7 +11044,6 @@ export namespace Prisma {
     duration?: IntWithAggregatesFilter<"Video"> | number
     style?: EnumVideoStyleWithAggregatesFilter<"Video"> | $Enums.VideoStyle
     language?: StringWithAggregatesFilter<"Video"> | string
-    audioLanguage?: StringWithAggregatesFilter<"Video"> | string
     hasCaptions?: BoolWithAggregatesFilter<"Video"> | boolean
     status?: EnumVideoStatusWithAggregatesFilter<"Video"> | $Enums.VideoStatus
     errorMessage?: StringNullableWithAggregatesFilter<"Video"> | string | null
@@ -11749,7 +11730,6 @@ export namespace Prisma {
     duration: number
     style: $Enums.VideoStyle
     language: string
-    audioLanguage: string
     hasCaptions?: boolean
     status?: $Enums.VideoStatus
     errorMessage?: string | null
@@ -11773,7 +11753,6 @@ export namespace Prisma {
     duration: number
     style: $Enums.VideoStyle
     language: string
-    audioLanguage: string
     hasCaptions?: boolean
     status?: $Enums.VideoStatus
     errorMessage?: string | null
@@ -11795,7 +11774,6 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
     language?: StringFieldUpdateOperationsInput | string
-    audioLanguage?: StringFieldUpdateOperationsInput | string
     hasCaptions?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumVideoStatusFieldUpdateOperationsInput | $Enums.VideoStatus
     errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11819,7 +11797,6 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
     language?: StringFieldUpdateOperationsInput | string
-    audioLanguage?: StringFieldUpdateOperationsInput | string
     hasCaptions?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumVideoStatusFieldUpdateOperationsInput | $Enums.VideoStatus
     errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11842,7 +11819,6 @@ export namespace Prisma {
     duration: number
     style: $Enums.VideoStyle
     language: string
-    audioLanguage: string
     hasCaptions?: boolean
     status?: $Enums.VideoStatus
     errorMessage?: string | null
@@ -11864,7 +11840,6 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
     language?: StringFieldUpdateOperationsInput | string
-    audioLanguage?: StringFieldUpdateOperationsInput | string
     hasCaptions?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumVideoStatusFieldUpdateOperationsInput | $Enums.VideoStatus
     errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11887,7 +11862,6 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
     language?: StringFieldUpdateOperationsInput | string
-    audioLanguage?: StringFieldUpdateOperationsInput | string
     hasCaptions?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumVideoStatusFieldUpdateOperationsInput | $Enums.VideoStatus
     errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12749,7 +12723,6 @@ export namespace Prisma {
     duration?: SortOrder
     style?: SortOrder
     language?: SortOrder
-    audioLanguage?: SortOrder
     hasCaptions?: SortOrder
     status?: SortOrder
     errorMessage?: SortOrder
@@ -12776,7 +12749,6 @@ export namespace Prisma {
     duration?: SortOrder
     style?: SortOrder
     language?: SortOrder
-    audioLanguage?: SortOrder
     hasCaptions?: SortOrder
     status?: SortOrder
     errorMessage?: SortOrder
@@ -12797,7 +12769,6 @@ export namespace Prisma {
     duration?: SortOrder
     style?: SortOrder
     language?: SortOrder
-    audioLanguage?: SortOrder
     hasCaptions?: SortOrder
     status?: SortOrder
     errorMessage?: SortOrder
@@ -13826,7 +13797,6 @@ export namespace Prisma {
     duration: number
     style: $Enums.VideoStyle
     language: string
-    audioLanguage: string
     hasCaptions?: boolean
     status?: $Enums.VideoStatus
     errorMessage?: string | null
@@ -13848,7 +13818,6 @@ export namespace Prisma {
     duration: number
     style: $Enums.VideoStyle
     language: string
-    audioLanguage: string
     hasCaptions?: boolean
     status?: $Enums.VideoStatus
     errorMessage?: string | null
@@ -14058,7 +14027,6 @@ export namespace Prisma {
     duration?: IntFilter<"Video"> | number
     style?: EnumVideoStyleFilter<"Video"> | $Enums.VideoStyle
     language?: StringFilter<"Video"> | string
-    audioLanguage?: StringFilter<"Video"> | string
     hasCaptions?: BoolFilter<"Video"> | boolean
     status?: EnumVideoStatusFilter<"Video"> | $Enums.VideoStatus
     errorMessage?: StringNullableFilter<"Video"> | string | null
@@ -14707,7 +14675,6 @@ export namespace Prisma {
     duration: number
     style: $Enums.VideoStyle
     language: string
-    audioLanguage: string
     hasCaptions?: boolean
     status?: $Enums.VideoStatus
     errorMessage?: string | null
@@ -14841,7 +14808,6 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
     language?: StringFieldUpdateOperationsInput | string
-    audioLanguage?: StringFieldUpdateOperationsInput | string
     hasCaptions?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumVideoStatusFieldUpdateOperationsInput | $Enums.VideoStatus
     errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14863,7 +14829,6 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
     language?: StringFieldUpdateOperationsInput | string
-    audioLanguage?: StringFieldUpdateOperationsInput | string
     hasCaptions?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumVideoStatusFieldUpdateOperationsInput | $Enums.VideoStatus
     errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14885,7 +14850,6 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
     language?: StringFieldUpdateOperationsInput | string
-    audioLanguage?: StringFieldUpdateOperationsInput | string
     hasCaptions?: BoolFieldUpdateOperationsInput | boolean
     status?: EnumVideoStatusFieldUpdateOperationsInput | $Enums.VideoStatus
     errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
