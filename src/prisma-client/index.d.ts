@@ -7644,7 +7644,7 @@ export namespace Prisma {
   export type VideoMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    prompt: string | null
+    title: string | null
     customScript: string | null
     duration: number | null
     style: $Enums.VideoStyle | null
@@ -7657,6 +7657,7 @@ export namespace Prisma {
     thumbnailUrl: string | null
     captionUrl: string | null
     tokensUsed: number | null
+    version: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7664,7 +7665,7 @@ export namespace Prisma {
   export type VideoMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    prompt: string | null
+    title: string | null
     customScript: string | null
     duration: number | null
     style: $Enums.VideoStyle | null
@@ -7677,6 +7678,7 @@ export namespace Prisma {
     thumbnailUrl: string | null
     captionUrl: string | null
     tokensUsed: number | null
+    version: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7684,6 +7686,7 @@ export namespace Prisma {
   export type VideoCountAggregateOutputType = {
     id: number
     userId: number
+    title: number
     prompt: number
     customScript: number
     duration: number
@@ -7697,6 +7700,7 @@ export namespace Prisma {
     thumbnailUrl: number
     captionUrl: number
     tokensUsed: number
+    version: number
     metadata: number
     createdAt: number
     updatedAt: number
@@ -7717,7 +7721,7 @@ export namespace Prisma {
   export type VideoMinAggregateInputType = {
     id?: true
     userId?: true
-    prompt?: true
+    title?: true
     customScript?: true
     duration?: true
     style?: true
@@ -7730,6 +7734,7 @@ export namespace Prisma {
     thumbnailUrl?: true
     captionUrl?: true
     tokensUsed?: true
+    version?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7737,7 +7742,7 @@ export namespace Prisma {
   export type VideoMaxAggregateInputType = {
     id?: true
     userId?: true
-    prompt?: true
+    title?: true
     customScript?: true
     duration?: true
     style?: true
@@ -7750,6 +7755,7 @@ export namespace Prisma {
     thumbnailUrl?: true
     captionUrl?: true
     tokensUsed?: true
+    version?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7757,6 +7763,7 @@ export namespace Prisma {
   export type VideoCountAggregateInputType = {
     id?: true
     userId?: true
+    title?: true
     prompt?: true
     customScript?: true
     duration?: true
@@ -7770,6 +7777,7 @@ export namespace Prisma {
     thumbnailUrl?: true
     captionUrl?: true
     tokensUsed?: true
+    version?: true
     metadata?: true
     createdAt?: true
     updatedAt?: true
@@ -7865,7 +7873,8 @@ export namespace Prisma {
   export type VideoGroupByOutputType = {
     id: string
     userId: string
-    prompt: string
+    title: string
+    prompt: string[]
     customScript: string | null
     duration: number
     style: $Enums.VideoStyle
@@ -7878,6 +7887,7 @@ export namespace Prisma {
     thumbnailUrl: string | null
     captionUrl: string | null
     tokensUsed: number
+    version: string
     metadata: JsonValue | null
     createdAt: Date
     updatedAt: Date
@@ -7905,6 +7915,7 @@ export namespace Prisma {
   export type VideoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    title?: boolean
     prompt?: boolean
     customScript?: boolean
     duration?: boolean
@@ -7918,6 +7929,7 @@ export namespace Prisma {
     thumbnailUrl?: boolean
     captionUrl?: boolean
     tokensUsed?: boolean
+    version?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7927,6 +7939,7 @@ export namespace Prisma {
   export type VideoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    title?: boolean
     prompt?: boolean
     customScript?: boolean
     duration?: boolean
@@ -7940,6 +7953,7 @@ export namespace Prisma {
     thumbnailUrl?: boolean
     captionUrl?: boolean
     tokensUsed?: boolean
+    version?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7949,6 +7963,7 @@ export namespace Prisma {
   export type VideoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    title?: boolean
     prompt?: boolean
     customScript?: boolean
     duration?: boolean
@@ -7962,6 +7977,7 @@ export namespace Prisma {
     thumbnailUrl?: boolean
     captionUrl?: boolean
     tokensUsed?: boolean
+    version?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7971,6 +7987,7 @@ export namespace Prisma {
   export type VideoSelectScalar = {
     id?: boolean
     userId?: boolean
+    title?: boolean
     prompt?: boolean
     customScript?: boolean
     duration?: boolean
@@ -7984,12 +8001,13 @@ export namespace Prisma {
     thumbnailUrl?: boolean
     captionUrl?: boolean
     tokensUsed?: boolean
+    version?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type VideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "prompt" | "customScript" | "duration" | "style" | "language" | "audioLanguage" | "hasCaptions" | "status" | "errorMessage" | "videoUrl" | "thumbnailUrl" | "captionUrl" | "tokensUsed" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["video"]>
+  export type VideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "prompt" | "customScript" | "duration" | "style" | "language" | "audioLanguage" | "hasCaptions" | "status" | "errorMessage" | "videoUrl" | "thumbnailUrl" | "captionUrl" | "tokensUsed" | "version" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["video"]>
   export type VideoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -8008,7 +8026,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      prompt: string
+      title: string
+      prompt: string[]
       customScript: string | null
       duration: number
       style: $Enums.VideoStyle
@@ -8021,6 +8040,7 @@ export namespace Prisma {
       thumbnailUrl: string | null
       captionUrl: string | null
       tokensUsed: number
+      version: string
       metadata: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
@@ -8450,7 +8470,8 @@ export namespace Prisma {
   interface VideoFieldRefs {
     readonly id: FieldRef<"Video", 'String'>
     readonly userId: FieldRef<"Video", 'String'>
-    readonly prompt: FieldRef<"Video", 'String'>
+    readonly title: FieldRef<"Video", 'String'>
+    readonly prompt: FieldRef<"Video", 'String[]'>
     readonly customScript: FieldRef<"Video", 'String'>
     readonly duration: FieldRef<"Video", 'Int'>
     readonly style: FieldRef<"Video", 'VideoStyle'>
@@ -8463,6 +8484,7 @@ export namespace Prisma {
     readonly thumbnailUrl: FieldRef<"Video", 'String'>
     readonly captionUrl: FieldRef<"Video", 'String'>
     readonly tokensUsed: FieldRef<"Video", 'Int'>
+    readonly version: FieldRef<"Video", 'String'>
     readonly metadata: FieldRef<"Video", 'Json'>
     readonly createdAt: FieldRef<"Video", 'DateTime'>
     readonly updatedAt: FieldRef<"Video", 'DateTime'>
@@ -10143,6 +10165,7 @@ export namespace Prisma {
   export const VideoScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    title: 'title',
     prompt: 'prompt',
     customScript: 'customScript',
     duration: 'duration',
@@ -10156,6 +10179,7 @@ export namespace Prisma {
     thumbnailUrl: 'thumbnailUrl',
     captionUrl: 'captionUrl',
     tokensUsed: 'tokensUsed',
+    version: 'version',
     metadata: 'metadata',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -10926,7 +10950,8 @@ export namespace Prisma {
     NOT?: VideoWhereInput | VideoWhereInput[]
     id?: StringFilter<"Video"> | string
     userId?: StringFilter<"Video"> | string
-    prompt?: StringFilter<"Video"> | string
+    title?: StringFilter<"Video"> | string
+    prompt?: StringNullableListFilter<"Video">
     customScript?: StringNullableFilter<"Video"> | string | null
     duration?: IntFilter<"Video"> | number
     style?: EnumVideoStyleFilter<"Video"> | $Enums.VideoStyle
@@ -10939,6 +10964,7 @@ export namespace Prisma {
     thumbnailUrl?: StringNullableFilter<"Video"> | string | null
     captionUrl?: StringNullableFilter<"Video"> | string | null
     tokensUsed?: IntFilter<"Video"> | number
+    version?: StringFilter<"Video"> | string
     metadata?: JsonNullableFilter<"Video">
     createdAt?: DateTimeFilter<"Video"> | Date | string
     updatedAt?: DateTimeFilter<"Video"> | Date | string
@@ -10948,6 +10974,7 @@ export namespace Prisma {
   export type VideoOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    title?: SortOrder
     prompt?: SortOrder
     customScript?: SortOrderInput | SortOrder
     duration?: SortOrder
@@ -10961,6 +10988,7 @@ export namespace Prisma {
     thumbnailUrl?: SortOrderInput | SortOrder
     captionUrl?: SortOrderInput | SortOrder
     tokensUsed?: SortOrder
+    version?: SortOrder
     metadata?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10973,7 +11001,8 @@ export namespace Prisma {
     OR?: VideoWhereInput[]
     NOT?: VideoWhereInput | VideoWhereInput[]
     userId?: StringFilter<"Video"> | string
-    prompt?: StringFilter<"Video"> | string
+    title?: StringFilter<"Video"> | string
+    prompt?: StringNullableListFilter<"Video">
     customScript?: StringNullableFilter<"Video"> | string | null
     duration?: IntFilter<"Video"> | number
     style?: EnumVideoStyleFilter<"Video"> | $Enums.VideoStyle
@@ -10986,6 +11015,7 @@ export namespace Prisma {
     thumbnailUrl?: StringNullableFilter<"Video"> | string | null
     captionUrl?: StringNullableFilter<"Video"> | string | null
     tokensUsed?: IntFilter<"Video"> | number
+    version?: StringFilter<"Video"> | string
     metadata?: JsonNullableFilter<"Video">
     createdAt?: DateTimeFilter<"Video"> | Date | string
     updatedAt?: DateTimeFilter<"Video"> | Date | string
@@ -10995,6 +11025,7 @@ export namespace Prisma {
   export type VideoOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    title?: SortOrder
     prompt?: SortOrder
     customScript?: SortOrderInput | SortOrder
     duration?: SortOrder
@@ -11008,6 +11039,7 @@ export namespace Prisma {
     thumbnailUrl?: SortOrderInput | SortOrder
     captionUrl?: SortOrderInput | SortOrder
     tokensUsed?: SortOrder
+    version?: SortOrder
     metadata?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11024,7 +11056,8 @@ export namespace Prisma {
     NOT?: VideoScalarWhereWithAggregatesInput | VideoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Video"> | string
     userId?: StringWithAggregatesFilter<"Video"> | string
-    prompt?: StringWithAggregatesFilter<"Video"> | string
+    title?: StringWithAggregatesFilter<"Video"> | string
+    prompt?: StringNullableListFilter<"Video">
     customScript?: StringNullableWithAggregatesFilter<"Video"> | string | null
     duration?: IntWithAggregatesFilter<"Video"> | number
     style?: EnumVideoStyleWithAggregatesFilter<"Video"> | $Enums.VideoStyle
@@ -11037,6 +11070,7 @@ export namespace Prisma {
     thumbnailUrl?: StringNullableWithAggregatesFilter<"Video"> | string | null
     captionUrl?: StringNullableWithAggregatesFilter<"Video"> | string | null
     tokensUsed?: IntWithAggregatesFilter<"Video"> | number
+    version?: StringWithAggregatesFilter<"Video"> | string
     metadata?: JsonNullableWithAggregatesFilter<"Video">
     createdAt?: DateTimeWithAggregatesFilter<"Video"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Video"> | Date | string
@@ -11709,7 +11743,8 @@ export namespace Prisma {
 
   export type VideoCreateInput = {
     id?: string
-    prompt: string
+    title: string
+    prompt?: VideoCreatepromptInput | string[]
     customScript?: string | null
     duration: number
     style: $Enums.VideoStyle
@@ -11722,6 +11757,7 @@ export namespace Prisma {
     thumbnailUrl?: string | null
     captionUrl?: string | null
     tokensUsed?: number
+    version?: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11731,7 +11767,8 @@ export namespace Prisma {
   export type VideoUncheckedCreateInput = {
     id?: string
     userId: string
-    prompt: string
+    title: string
+    prompt?: VideoCreatepromptInput | string[]
     customScript?: string | null
     duration: number
     style: $Enums.VideoStyle
@@ -11744,6 +11781,7 @@ export namespace Prisma {
     thumbnailUrl?: string | null
     captionUrl?: string | null
     tokensUsed?: number
+    version?: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11751,7 +11789,8 @@ export namespace Prisma {
 
   export type VideoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    prompt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    prompt?: VideoUpdatepromptInput | string[]
     customScript?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
@@ -11764,6 +11803,7 @@ export namespace Prisma {
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     captionUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tokensUsed?: IntFieldUpdateOperationsInput | number
+    version?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11773,7 +11813,8 @@ export namespace Prisma {
   export type VideoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    prompt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    prompt?: VideoUpdatepromptInput | string[]
     customScript?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
@@ -11786,6 +11827,7 @@ export namespace Prisma {
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     captionUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tokensUsed?: IntFieldUpdateOperationsInput | number
+    version?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11794,7 +11836,8 @@ export namespace Prisma {
   export type VideoCreateManyInput = {
     id?: string
     userId: string
-    prompt: string
+    title: string
+    prompt?: VideoCreatepromptInput | string[]
     customScript?: string | null
     duration: number
     style: $Enums.VideoStyle
@@ -11807,6 +11850,7 @@ export namespace Prisma {
     thumbnailUrl?: string | null
     captionUrl?: string | null
     tokensUsed?: number
+    version?: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11814,7 +11858,8 @@ export namespace Prisma {
 
   export type VideoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    prompt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    prompt?: VideoUpdatepromptInput | string[]
     customScript?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
@@ -11827,6 +11872,7 @@ export namespace Prisma {
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     captionUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tokensUsed?: IntFieldUpdateOperationsInput | number
+    version?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11835,7 +11881,8 @@ export namespace Prisma {
   export type VideoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    prompt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    prompt?: VideoUpdatepromptInput | string[]
     customScript?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
@@ -11848,6 +11895,7 @@ export namespace Prisma {
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     captionUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tokensUsed?: IntFieldUpdateOperationsInput | number
+    version?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12670,6 +12718,14 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type EnumVideoStyleFilter<$PrismaModel = never> = {
     equals?: $Enums.VideoStyle | EnumVideoStyleFieldRefInput<$PrismaModel>
     in?: $Enums.VideoStyle[] | ListEnumVideoStyleFieldRefInput<$PrismaModel>
@@ -12687,6 +12743,7 @@ export namespace Prisma {
   export type VideoCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    title?: SortOrder
     prompt?: SortOrder
     customScript?: SortOrder
     duration?: SortOrder
@@ -12700,6 +12757,7 @@ export namespace Prisma {
     thumbnailUrl?: SortOrder
     captionUrl?: SortOrder
     tokensUsed?: SortOrder
+    version?: SortOrder
     metadata?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12713,7 +12771,7 @@ export namespace Prisma {
   export type VideoMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    prompt?: SortOrder
+    title?: SortOrder
     customScript?: SortOrder
     duration?: SortOrder
     style?: SortOrder
@@ -12726,6 +12784,7 @@ export namespace Prisma {
     thumbnailUrl?: SortOrder
     captionUrl?: SortOrder
     tokensUsed?: SortOrder
+    version?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12733,7 +12792,7 @@ export namespace Prisma {
   export type VideoMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    prompt?: SortOrder
+    title?: SortOrder
     customScript?: SortOrder
     duration?: SortOrder
     style?: SortOrder
@@ -12746,6 +12805,7 @@ export namespace Prisma {
     thumbnailUrl?: SortOrder
     captionUrl?: SortOrder
     tokensUsed?: SortOrder
+    version?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13182,10 +13242,19 @@ export namespace Prisma {
     update?: XOR<XOR<SubscriptionUpdateToOneWithWhereWithoutHistoryInput, SubscriptionUpdateWithoutHistoryInput>, SubscriptionUncheckedUpdateWithoutHistoryInput>
   }
 
+  export type VideoCreatepromptInput = {
+    set: string[]
+  }
+
   export type UserCreateNestedOneWithoutVideosInput = {
     create?: XOR<UserCreateWithoutVideosInput, UserUncheckedCreateWithoutVideosInput>
     connectOrCreate?: UserCreateOrConnectWithoutVideosInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type VideoUpdatepromptInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type EnumVideoStyleFieldUpdateOperationsInput = {
@@ -13751,7 +13820,8 @@ export namespace Prisma {
 
   export type VideoCreateWithoutUserInput = {
     id?: string
-    prompt: string
+    title: string
+    prompt?: VideoCreatepromptInput | string[]
     customScript?: string | null
     duration: number
     style: $Enums.VideoStyle
@@ -13764,6 +13834,7 @@ export namespace Prisma {
     thumbnailUrl?: string | null
     captionUrl?: string | null
     tokensUsed?: number
+    version?: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13771,7 +13842,8 @@ export namespace Prisma {
 
   export type VideoUncheckedCreateWithoutUserInput = {
     id?: string
-    prompt: string
+    title: string
+    prompt?: VideoCreatepromptInput | string[]
     customScript?: string | null
     duration: number
     style: $Enums.VideoStyle
@@ -13784,6 +13856,7 @@ export namespace Prisma {
     thumbnailUrl?: string | null
     captionUrl?: string | null
     tokensUsed?: number
+    version?: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -13979,7 +14052,8 @@ export namespace Prisma {
     NOT?: VideoScalarWhereInput | VideoScalarWhereInput[]
     id?: StringFilter<"Video"> | string
     userId?: StringFilter<"Video"> | string
-    prompt?: StringFilter<"Video"> | string
+    title?: StringFilter<"Video"> | string
+    prompt?: StringNullableListFilter<"Video">
     customScript?: StringNullableFilter<"Video"> | string | null
     duration?: IntFilter<"Video"> | number
     style?: EnumVideoStyleFilter<"Video"> | $Enums.VideoStyle
@@ -13992,6 +14066,7 @@ export namespace Prisma {
     thumbnailUrl?: StringNullableFilter<"Video"> | string | null
     captionUrl?: StringNullableFilter<"Video"> | string | null
     tokensUsed?: IntFilter<"Video"> | number
+    version?: StringFilter<"Video"> | string
     metadata?: JsonNullableFilter<"Video">
     createdAt?: DateTimeFilter<"Video"> | Date | string
     updatedAt?: DateTimeFilter<"Video"> | Date | string
@@ -14626,7 +14701,8 @@ export namespace Prisma {
 
   export type VideoCreateManyUserInput = {
     id?: string
-    prompt: string
+    title: string
+    prompt?: VideoCreatepromptInput | string[]
     customScript?: string | null
     duration: number
     style: $Enums.VideoStyle
@@ -14639,6 +14715,7 @@ export namespace Prisma {
     thumbnailUrl?: string | null
     captionUrl?: string | null
     tokensUsed?: number
+    version?: string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14758,7 +14835,8 @@ export namespace Prisma {
 
   export type VideoUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    prompt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    prompt?: VideoUpdatepromptInput | string[]
     customScript?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
@@ -14771,6 +14849,7 @@ export namespace Prisma {
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     captionUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tokensUsed?: IntFieldUpdateOperationsInput | number
+    version?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14778,7 +14857,8 @@ export namespace Prisma {
 
   export type VideoUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    prompt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    prompt?: VideoUpdatepromptInput | string[]
     customScript?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
@@ -14791,6 +14871,7 @@ export namespace Prisma {
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     captionUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tokensUsed?: IntFieldUpdateOperationsInput | number
+    version?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14798,7 +14879,8 @@ export namespace Prisma {
 
   export type VideoUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    prompt?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    prompt?: VideoUpdatepromptInput | string[]
     customScript?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: IntFieldUpdateOperationsInput | number
     style?: EnumVideoStyleFieldUpdateOperationsInput | $Enums.VideoStyle
@@ -14811,6 +14893,7 @@ export namespace Prisma {
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     captionUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tokensUsed?: IntFieldUpdateOperationsInput | number
+    version?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

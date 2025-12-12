@@ -204,6 +204,7 @@ exports.Prisma.SubscriptionHistoryScalarFieldEnum = {
 exports.Prisma.VideoScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  title: 'title',
   prompt: 'prompt',
   customScript: 'customScript',
   duration: 'duration',
@@ -217,6 +218,7 @@ exports.Prisma.VideoScalarFieldEnum = {
   thumbnailUrl: 'thumbnailUrl',
   captionUrl: 'captionUrl',
   tokensUsed: 'tokensUsed',
+  version: 'version',
   metadata: 'metadata',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

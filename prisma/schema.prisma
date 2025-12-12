@@ -173,7 +173,8 @@ model Video {
     user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     // Creation details
-    prompt        String     @db.Text
+    title         String
+    prompt        String[]   @db.Text
     customScript  String?    @db.Text
     duration      Int // in seconds
     style         VideoStyle
@@ -194,6 +195,7 @@ model Video {
     tokensUsed Int @default(0)
 
     // Metadata
+    version  String @default("1.0")
     metadata Json?
 
     // Timestamps
